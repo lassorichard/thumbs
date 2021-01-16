@@ -1,14 +1,40 @@
 .popup {
   background: $lightgray;
-  margin: 35px 20px;
+  // margin: 35px 20px;
+  margin-top: 35px;
+  margin-bottom: 35px;
   padding: 20px;
   position: relative;
 
+  &__container {
+    @include from (desktop) {
+      display: flex;
+    }
+  }
+
+  
+
   &__title {
     padding-bottom: 20px;
+
+    @include from (desktop) {
+      padding-bottom: 0;
+      width: 30%;
+    }
+
+    .paragraph--1 {
+      @include from (desktop) {
+        margin-bottom: 0;
+        line-height: 14px;
+      }
+    }
   }
   &__content {
     padding-bottom: 10px;
+
+    @include from (desktop) {
+      padding-right: 40px;
+    }
   }
   &__close {
     position: absolute;
@@ -17,6 +43,12 @@
     padding: 20px;
     cursor: pointer;
     transition: $transition;
+
+    @include from (desktop) {
+      top: 50%;
+      padding: 0 20px 0 0;
+      transform: translateY(-50%);
+    }
 
     &:hover {
       opacity: .8;

@@ -27,20 +27,12 @@
   &--3 {
     @include font-size(21);
     font-weight: 600;
-
-    @include from (desktop){
-      @include font-size(26);
-    }
   }
   
   &--1 {
     @include font-size(50);
     line-height: 50px;
     margin-bottom: 30px;
-
-    @include from(desktop) {
-      @include font-size(60);
-    }
   }
 }
 
@@ -49,23 +41,16 @@
   &--1 {
     @include font-size(16);
     font-weight: 300;
-    @include from (desktop) {
-      @include font-size(21);
-      margin-bottom: 20px;
-    }
   }
   &--2 {
     @include font-size(20);
     font-weight: 300;
     margin-bottom: 20px;
-    @include from (desktop) {
-      @include font-size(28);
-    }
   }
   &--3 {
     @include font-size(14);
     @include from (desktop) {
-      @include font-size(19);
+      @include font-size(16);
     }
   }
 }
