@@ -6,6 +6,9 @@
 
     .thumbs__up, .thumbs__down {
       @include font-size(28);
+      @include from (desktop) {
+        @include font-size(40);
+      }
     }
   }
 
