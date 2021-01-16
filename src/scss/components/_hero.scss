@@ -14,6 +14,10 @@
 
   &__box {
     background: transparent;
+    @include from (desktop) {
+      width: 50%;
+      margin-right: -40px;
+    }
     
     &__top {
       padding: 40px 35px;
