@@ -16,7 +16,12 @@
   }
 
   &--4 {
-    @include font-size(20);
+    @include font-size(26);
+    font-weight: 800;
+
+    @include from (desktop){
+      @include font-size(26);
+    }
   }
   
   &--3 {
@@ -43,6 +48,7 @@
 .paragraph {
   &--1 {
     @include font-size(16);
+    font-weight: 300;
     @include from (desktop) {
       @include font-size(21);
       margin-bottom: 20px;

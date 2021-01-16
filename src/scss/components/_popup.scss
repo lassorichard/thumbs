@@ -1,0 +1,25 @@
+.popup {
+  background: $lightgray;
+  margin: 35px 20px;
+  padding: 20px;
+  position: relative;
+
+  &__title {
+    padding-bottom: 20px;
+  }
+  &__content {
+    padding-bottom: 10px;
+  }
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}

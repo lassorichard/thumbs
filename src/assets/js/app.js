@@ -6,6 +6,7 @@ let menuIcon = document.getElementById('menu-icon'),
 
 menuIcon.addEventListener('click', (e)=> {
   if(navigation.classList.contains('menu-active')) {
+    e.preventDefault();
     navigation.classList.remove('menu-active')
   } else {
     navigation.classList.add('menu-active')
@@ -13,7 +14,18 @@ menuIcon.addEventListener('click', (e)=> {
 });
 
 closeIcon.addEventListener('click', (e)=> {
+  e.preventDefault();
   if(navigation.classList.contains('menu-active')) {
     navigation.classList.remove('menu-active')
   } 
+});
+
+// Pop up
+
+let popUpClose = document.getElementById('popup-close'),
+    popUp = document.getElementById('popup'); 
+    
+popUpClose.addEventListener('click', (e)=> {
+  e.preventDefault();
+  popUp.style.display = 'none';
 });
