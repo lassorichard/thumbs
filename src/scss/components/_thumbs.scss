@@ -1,0 +1,38 @@
+.thumbs {
+  display: flex;
+  
+  &--hero {
+    height: 80px;
+
+    .thumbs__up, .thumbs__down {
+      @include font-size(28);
+    }
+  }
+
+  &__up, &__down {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  &__up {
+    width: 50%;
+    background: rgba($shamrock,0.9);
+    
+  }
+  &__down {
+    width: 50%;
+    background: rgba($yellow,0.9);
+
+    i {
+      transform: scaleX(-1);
+    }
+  }
+}

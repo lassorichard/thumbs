@@ -1,0 +1,86 @@
+.hero {
+  background: url('../img/hero.png') 83% center no-repeat;
+  background-size: cover;
+  height: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @include from (desktop) {
+    height: 100vh;
+  }
+
+  &__box {
+    background: transparent;
+    
+    &__top {
+      padding: 40px 35px;
+      width: 100%;
+      height: 100%;
+    }
+  } 
+
+  &__days {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    &__left {
+      width: 30%;
+      background: rgba($darkgray, 0.5);
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 10px;
+      @include font-size(12);
+      font-weight: bold;
+    }
+
+    &__right {
+      width: 70%;
+      background: rgba($lightgray, 0.5);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      @include font-size(26);
+      font-weight: 300;
+      position: relative;
+
+      &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-left: 7px solid rgba($darkgray, 0.5);
+        border-bottom: 7px solid transparent;
+        transform: translateY(-50%);
+      }
+
+      span {
+        font-weight: 500;
+        padding-right: 10px;
+        padding-left: 10px;
+        @include font-size(36);
+      }
+    }
+  }
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .hero__box__top {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($darkgray, 0.5);  
+  }
+}
