@@ -25,6 +25,7 @@ const server = browserSync.create();
 
 // Routes
 const src = {
+	fonts : './src/assets/fonts',
 	img : './src/assets/img',
 	js : './src/assets/js',
 	scss : './src/scss',
@@ -53,6 +54,7 @@ gulp.task('watching', () => {
 	gulp.watch(`${src.views}/**/*.ejs`, gulp.series('compile-ect'));
 	gulp.watch(`${src.scss}/**/*.scss`, gulp.series('compile-scss'));
 	gulp.watch(`${src.img}/**/*`, gulp.series('optimize-images'));
+	gulp.watch(`${src.fonts}/*`, gulp.series('copy-fonts'));
 	gulp.watch(`${src.js}/vendor/*.js`, gulp.series('js-vendor'));
 	gulp.watch(`${src.js}/main/*.js`, gulp.series('js-main'));
 	gulp.watch(`${src.js}/app.js`, gulp.series('js-app'));
@@ -158,9 +160,19 @@ gulp.task('optimize-images', () => {
 });
 // End Optimize Copy Images
 
+// Copy Fonts
+gulp.task('copy-fonts', () => {
+	return gulp
+		.src(`${src.fonts}/**/*`)
+		.pipe(cleanDir(`${dist}/assets/fonts`))
+		.pipe(gulp.dest(`${dist}/assets/fonts`))
+		.pipe(server.stream());
+});
+// End Copy Fonts
+
 
 // Create Dist Folder
-gulp.task('development', gulp.series('compile-ect', 'compile-scss', 'optimize-images', 'js-vendor', 'js-main', 'js-app'));
+gulp.task('development', gulp.series('compile-ect', 'compile-scss', 'optimize-images', 'js-vendor', 'js-main', 'js-app', 'copy-fonts'));
 
 
 // Start Development
