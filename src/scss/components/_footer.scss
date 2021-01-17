@@ -1,0 +1,59 @@
+.footer-section {
+  margin-top: 35px;
+  margin-bottom: 35px;
+
+  &__container {
+    border-top: 1px dotted $darkgray;
+    padding: 15px 0;
+
+    @include from (desktop) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 0;
+    }
+  }
+
+  &__terms {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 20px;
+    
+    @include from (desktop) {
+      justify-content: flex-start;
+    }
+
+    a {
+      @include from (desktop) {
+        padding-right: 20px;
+      }
+    }
+  }
+
+  &__media {
+    display: flex;
+    justify-content: center;
+
+    @include from (desktop) {
+      align-items: center;
+    }
+
+    &__container {
+      padding-left: 20px;
+
+      @include from (desktop) {
+        display: flex;
+      }
+
+      i {
+        @include font-size(22);
+        cursor: pointer;
+
+        &:not(:last-child) {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
