@@ -35,3 +35,5 @@ popUpClose.addEventListener('click', (e)=> {
   e.preventDefault();
   popUp.style.display = 'none';
 });
+
+// Hero
