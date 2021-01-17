@@ -2,12 +2,21 @@
   width: fit-content;
   padding: 5px 30px;
   @include font-size(14);
+  cursor: pointer;
 
   &--primary {
     border: 1px solid $white;
     transition: $transition;
     &:hover {
-      background: rgba($darkgray,0.9);
+      background: rgba($darkgray,0.5);
+    }
+  }
+
+  &--secondary {
+    border: 2px solid #000000;
+    transition: $transition;
+    &:hover {
+      background: rgba($white,0.4);
     }
   }
 }

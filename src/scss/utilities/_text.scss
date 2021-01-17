@@ -73,6 +73,13 @@
       @include font-size(16);
     }
   }
+  &--6 {
+    @include font-size(20);
+    font-weight: 300;
+    @include from (desktop) {
+      @include font-size(22);
+    }
+  }
 }
 .more-info {
   margin-bottom: 40px;

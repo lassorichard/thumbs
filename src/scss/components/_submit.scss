@@ -1,0 +1,21 @@
+.submit {
+  margin-top: 35px;
+  margin-bottom: 35px;
+
+  &__container {
+    background:linear-gradient(to right, rgba($white, .8),rgba($white, .8)), url('../img/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include from (desktop) {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+  
+}
