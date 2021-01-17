@@ -1,0 +1,13 @@
+.btn {
+  width: fit-content;
+  padding: 5px 30px;
+  @include font-size(14);
+
+  &--primary {
+    border: 1px solid $white;
+    transition: $transition;
+    &:hover {
+      background: rgba($darkgray,0.9);
+    }
+  }
+}

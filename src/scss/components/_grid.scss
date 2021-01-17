@@ -1,0 +1,79 @@
+.grid-home {
+  margin-top: 35px;
+}
+.grid {
+  margin-top: 35px;
+  margin-bottom: 35px;
+
+  @include from (desktop) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+  }
+  
+  &__box {
+    background: green;
+    position: relative;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &__image {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        z-index: 100;
+      }
+      &__gradient {
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0,0,0,0) 100%);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 200;
+      }
+    }
+
+    &__title, &__category, &__description, &__vote, &__footer {
+      position: relative;
+      z-index: 300;
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+
+    }
+    &__category {
+      padding-left: 35px;
+    }
+
+    &__description {
+      padding: 20px 35px ;
+    }
+    
+    &__vote {
+      display: flex;
+      padding: 0 35px 20px;
+
+      &__thumbs {
+        display: flex;
+        padding-right: 10px;
+      }
+    }
+
+    &__footer {
+      height: 50px;
+    }
+  }
+}
