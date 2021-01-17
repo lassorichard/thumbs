@@ -1,12 +1,34 @@
 [
   {
-    "src": "https://picsum.photos/450/325?image=100",
-    "title": "Creative Logo",
-    "category": "branding"
+    "name": "Kanye West",
+    "id": "kanye",
+    "time": "1 month",
+    "category": "Entertainment",
+    "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
+    "img": "./assets/img/kanye.jpg"
   },
   {
-    "src": "https://picsum.photos/450/450?image=200",
-    "title": "Creative Logo",
-    "category": "photography"
+    "name": "Mark Zucjerberg",
+    "id": "mark",
+    "time": "1 month",
+    "category": "Business",
+    "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
+    "img": "./assets/img/mark.jpg"
+  },
+  {
+    "name": "Cristina Fernández de Kirchner",
+    "id": "cristina",
+    "time": "1 month",
+    "category": "Politics",
+    "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
+    "img": "./assets/img/cristina.jpg"
+  },
+  {
+    "name": "Malala Yousafzai",
+    "id": "malala",
+    "time": "1 month",
+    "category": "Entertainment",
+    "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
+    "img": "./assets/img/malala.jpg"
   }
 ]

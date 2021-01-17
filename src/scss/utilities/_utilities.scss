@@ -17,5 +17,9 @@
 }
 
 .deactive {
-  display: none;
+  display: none !important;
+}
+
+.selected {
+  border: 1px solid $white;
 }
