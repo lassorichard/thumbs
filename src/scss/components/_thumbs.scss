@@ -8,6 +8,7 @@
       @include font-size(28);
       cursor: pointer;
       transition: $transition;
+      width: 50%;
 
       &:hover {
         opacity: .9;
@@ -45,12 +46,12 @@
   }
 
   &__up {
-    width: 50%;
+    // width: 50%;
     background: rgba($shamrock,0.8);
     
   }
   &__down {
-    width: 50%;
+    // width: 50%;
     background: rgba($yellow,0.8);
   }
 

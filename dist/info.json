@@ -5,15 +5,19 @@
     "time": "1 month",
     "category": "Entertainment",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
-    "img": "./assets/img/kanye.jpg"
+    "img": "./assets/img/kanye.jpg",
+    "likes": 60,
+    "dislikes": 55
   },
   {
-    "name": "Mark Zucjerberg",
+    "name": "Mark Zuckerberg",
     "id": "mark",
     "time": "1 month",
     "category": "Business",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
-    "img": "./assets/img/mark.jpg"
+    "img": "./assets/img/mark.jpg",
+    "likes": 58,
+    "dislikes": 50
   },
   {
     "name": "Cristina Fernández de Kirchner",
@@ -21,7 +25,9 @@
     "time": "1 month",
     "category": "Politics",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
-    "img": "./assets/img/cristina.jpg"
+    "img": "./assets/img/cristina.jpg",
+    "likes": 50,
+    "dislikes": 50
   },
   {
     "name": "Malala Yousafzai",
@@ -29,6 +35,8 @@
     "time": "1 month",
     "category": "Entertainment",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
-    "img": "./assets/img/malala.jpg"
+    "img": "./assets/img/malala.jpg",
+    "likes": 50,
+    "dislikes": 50
   }
 ]
