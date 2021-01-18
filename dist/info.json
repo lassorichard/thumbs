@@ -6,8 +6,8 @@
     "category": "Entertainment",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
     "img": "./assets/img/kanye.jpg",
-    "likes": 60,
-    "dislikes": 55
+    "likes": 4,
+    "dislikes": 6
   },
   {
     "name": "Mark Zuckerberg",
@@ -16,7 +16,7 @@
     "category": "Business",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
     "img": "./assets/img/mark.jpg",
-    "likes": 58,
+    "likes": 55,
     "dislikes": 50
   },
   {
@@ -26,8 +26,8 @@
     "category": "Politics",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
     "img": "./assets/img/cristina.jpg",
-    "likes": 50,
-    "dislikes": 50
+    "likes": 10,
+    "dislikes": 20
   },
   {
     "name": "Malala Yousafzai",
@@ -36,7 +36,7 @@
     "category": "Entertainment",
     "description": "Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit libero.",
     "img": "./assets/img/malala.jpg",
-    "likes": 50,
-    "dislikes": 50
+    "likes": 60,
+    "dislikes": 30
   }
 ]

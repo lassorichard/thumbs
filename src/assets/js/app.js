@@ -57,11 +57,6 @@ function ajaxPositive(response) {
 function showResult(txt) {
   let data = JSON.parse(txt),
       grid = document.querySelector('#grid');
-      // total = (votes-up + vote-down),
-      // percentUp = (vote-up / total) * 100,
-      // percentDown = (vote-down / total) * 100;
-
-      // ${ ( (item.likes * 100) / ( item.likes + item.dislikes ) ) }
 
   for (let item of data) {
     grid.innerHTML += `
@@ -101,15 +96,15 @@ function showResult(txt) {
         </div>
         <div class="grid__box__footer hero__box__bottom text-white">
           <div class="thumbs thumbs--box">
-            <div class="thumbs__up" style="width: ${Math.round(( (item.likes) / (item.likes + item.dislikes) ) * 100 )}%">
+            <div class="thumbs__up" id="percent-bar-up-${item.id}">
               <i class="fas fa-thumbs-up"></i>
               <div class="thumbs__percent">
-                <span id="percentone-${item.id}" class="bold headerline--4">${Math.round(( (item.likes) / (item.likes + item.dislikes) ) * 100 )}</span>%
+                <span id="percent-up-${item.id}" class="bold headerline--4"></span>%
               </div>
             </div>
-            <div class="thumbs__down" style="width: ${Math.round(( (item.dislikes) / (item.likes + item.dislikes) ) * 100 )}%"">
+            <div class="thumbs__down" id="percent-bar-down-${item.id}">
               <div class="thumbs__percent">
-                <span id="percenttwo-${item.id}" class="bold headerline--4">${Math.round(( (item.dislikes) / (item.likes + item.dislikes) ) * 100 )}</span>%
+                <span id="percent-down-${item.id}" class="bold headerline--4"></span>%
               </div>
               <i class="fas fa-thumbs-down"></i>
             </div>
@@ -118,6 +113,10 @@ function showResult(txt) {
         <div class="grid__box__image">
           <img src="${item.img}">
           <div class="grid__box__image__gradient"></div>
+        </div>
+        <div class="deactive">
+          <div id="likes-${item.id}">${item.likes}</div>
+          <div id="dislikes-${item.id}">${item.dislikes}</div>
         </div>
       </div>
     ` 
@@ -138,15 +137,17 @@ let thumbSelectKanye = ()=> {
       thumbDown = document.getElementById('thumb-down-kanye'),
       thumbTitle = document.getElementById('title-thumb-kanye'),
       thumbTitleIcon = document.getElementById('title-thumb-icon-kanye'),
-      percentOne = document.getElementById('percentone-kanye'),
-      p1 = percentOne.innerHTML,
-      percentTwo = document.getElementById('percenttwo-kanye'),
-      p2 = percentTwo.innerHTML,
+      likes = document.getElementById('likes-kanye').innerHTML,
+      dislikes = document.getElementById('dislikes-kanye').innerHTML,
+      percentBarUp = document.getElementById('percent-bar-up-kanye'),
+      percentBarDown = document.getElementById('percent-bar-down-kanye'),
+      percentUp = document.getElementById('percent-up-kanye'),
+      percentDown = document.getElementById('percent-down-kanye'),
       thumbs = document.getElementById('thumbs-kanye');
 
   // Title thumb
 
-  if(p1 > p2) {
+  if(likes >= dislikes) {
     thumbTitle.classList.remove('thumbs-box--down')
     thumbTitle.classList.add('thumbs-box--up')
     thumbTitleIcon.classList.add('fa-thumbs-up')
@@ -186,9 +187,14 @@ let thumbSelectKanye = ()=> {
       descriptionBox = document.getElementById('description-box-kanye'),
       thanks = document.getElementById('thanks-kanye'),
       voteAgain = document.getElementById('vote-again-kanye'),
-      votedStorage = window.localStorage;
+      votesStorage = window.localStorage;
 
   voteNow.addEventListener('click', (e)=> {
+    e.preventDefault();
+    
+  let likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100,
+      dislikesPercent = (Number(dislikes))/(Number(likes) + Number(dislikes))*100;
+
     if(thumbUp.classList.contains('selected') || thumbDown.classList.contains('selected')) {
       thumbs.classList.add('deactive');
       voteNow.classList.add('deactive');
@@ -196,10 +202,23 @@ let thumbSelectKanye = ()=> {
       descriptionBox.classList.add('deactive');
       thanks.classList.remove('deactive');
     } if (thumbUp.classList.contains('selected')){
-      console.log('contiene up')
-      votedStorage.setItem('kanye', 1)
+      likes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarUp.style.width = likesPercent + '%';
+      votesStorage.setItem('Kanye like', likes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     } if (thumbDown.classList.contains('selected')){
-      console.log('contiene down')
+      dislikes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarDown.style.width = likesPercent + '%';
+      votesStorage.setItem('Kanye dislike', dislikes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     };
     
   });
@@ -216,6 +235,15 @@ let thumbSelectKanye = ()=> {
       thanks.classList.add('deactive');
     };
   });
+
+  // Percent Bar
+  likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+  dislikesPercent = 100 - likesPercent;
+
+  percentBarUp.style.width = likesPercent + '%';
+  percentUp.innerHTML = Math.round(likesPercent);
+  percentBarDown.style.width = dislikesPercent + '%';
+  percentDown.innerHTML = Math.round(dislikesPercent);
 }
 
 let thumbSelectMark = ()=> {
@@ -224,15 +252,17 @@ let thumbSelectMark = ()=> {
       thumbDown = document.getElementById('thumb-down-mark'),
       thumbTitle = document.getElementById('title-thumb-mark'),
       thumbTitleIcon = document.getElementById('title-thumb-icon-mark'),
-      percentOne = document.getElementById('percentone-mark'),
-      p1 = percentOne.innerHTML,
-      percentTwo = document.getElementById('percenttwo-mark'),
-      p2 = percentTwo.innerHTML,
+      likes = document.getElementById('likes-mark').innerHTML,
+      dislikes = document.getElementById('dislikes-mark').innerHTML,
+      percentBarUp = document.getElementById('percent-bar-up-mark'),
+      percentBarDown = document.getElementById('percent-bar-down-mark'),
+      percentUp = document.getElementById('percent-up-mark'),
+      percentDown = document.getElementById('percent-down-mark'),
       thumbs = document.getElementById('thumbs-mark');
 
   // Title thumb
 
-  if(p1 > p2) {
+  if(likes >= dislikes) {
     thumbTitle.classList.remove('thumbs-box--down')
     thumbTitle.classList.add('thumbs-box--up')
     thumbTitleIcon.classList.add('fa-thumbs-up')
@@ -272,9 +302,14 @@ let thumbSelectMark = ()=> {
       descriptionBox = document.getElementById('description-box-mark'),
       thanks = document.getElementById('thanks-mark'),
       voteAgain = document.getElementById('vote-again-mark'),
-      votedStorage = window.localStorage;
+      votesStorage = window.localStorage;
 
   voteNow.addEventListener('click', (e)=> {
+    e.preventDefault();
+    
+  let likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100,
+      dislikesPercent = (Number(dislikes))/(Number(likes) + Number(dislikes))*100;
+
     if(thumbUp.classList.contains('selected') || thumbDown.classList.contains('selected')) {
       thumbs.classList.add('deactive');
       voteNow.classList.add('deactive');
@@ -282,10 +317,23 @@ let thumbSelectMark = ()=> {
       descriptionBox.classList.add('deactive');
       thanks.classList.remove('deactive');
     } if (thumbUp.classList.contains('selected')){
-      console.log('contiene up')
-      votedStorage.setItem('mark', 1)
+      likes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarUp.style.width = likesPercent + '%';
+      votesStorage.setItem('Mark like', likes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     } if (thumbDown.classList.contains('selected')){
-      console.log('contiene down')
+      dislikes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarDown.style.width = likesPercent + '%';
+      votesStorage.setItem('Mark dislike', dislikes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     };
     
   });
@@ -302,6 +350,15 @@ let thumbSelectMark = ()=> {
       thanks.classList.add('deactive');
     };
   });
+
+  // Percent Bar
+  likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+  dislikesPercent = 100 - likesPercent;
+
+  percentBarUp.style.width = likesPercent + '%';
+  percentUp.innerHTML = Math.round(likesPercent);
+  percentBarDown.style.width = dislikesPercent + '%';
+  percentDown.innerHTML = Math.round(dislikesPercent);
 }
 
 let thumbSelectCristina = ()=> {
@@ -310,15 +367,17 @@ let thumbSelectCristina = ()=> {
       thumbDown = document.getElementById('thumb-down-cristina'),
       thumbTitle = document.getElementById('title-thumb-cristina'),
       thumbTitleIcon = document.getElementById('title-thumb-icon-cristina'),
-      percentOne = document.getElementById('percentone-cristina'),
-      p1 = percentOne.innerHTML,
-      percentTwo = document.getElementById('percenttwo-cristina'),
-      p2 = percentTwo.innerHTML,
+      likes = document.getElementById('likes-cristina').innerHTML,
+      dislikes = document.getElementById('dislikes-cristina').innerHTML,
+      percentBarUp = document.getElementById('percent-bar-up-cristina'),
+      percentBarDown = document.getElementById('percent-bar-down-cristina'),
+      percentUp = document.getElementById('percent-up-cristina'),
+      percentDown = document.getElementById('percent-down-cristina'),
       thumbs = document.getElementById('thumbs-cristina');
 
   // Title thumb
 
-  if(p1 > p2) {
+  if(likes >= dislikes) {
     thumbTitle.classList.remove('thumbs-box--down')
     thumbTitle.classList.add('thumbs-box--up')
     thumbTitleIcon.classList.add('fa-thumbs-up')
@@ -358,9 +417,14 @@ let thumbSelectCristina = ()=> {
       descriptionBox = document.getElementById('description-box-cristina'),
       thanks = document.getElementById('thanks-cristina'),
       voteAgain = document.getElementById('vote-again-cristina'),
-      votedStorage = window.localStorage;
+      votesStorage = window.localStorage;
 
   voteNow.addEventListener('click', (e)=> {
+    e.preventDefault();
+    
+  let likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100,
+      dislikesPercent = (Number(dislikes))/(Number(likes) + Number(dislikes))*100;
+
     if(thumbUp.classList.contains('selected') || thumbDown.classList.contains('selected')) {
       thumbs.classList.add('deactive');
       voteNow.classList.add('deactive');
@@ -368,10 +432,23 @@ let thumbSelectCristina = ()=> {
       descriptionBox.classList.add('deactive');
       thanks.classList.remove('deactive');
     } if (thumbUp.classList.contains('selected')){
-      console.log('contiene up')
-      votedStorage.setItem('cristina', 1)
+      likes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarUp.style.width = likesPercent + '%';
+      votesStorage.setItem('Cristina like', likes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     } if (thumbDown.classList.contains('selected')){
-      console.log('contiene down')
+      dislikes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarDown.style.width = likesPercent + '%';
+      votesStorage.setItem('Cristina dislike', dislikes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     };
     
   });
@@ -388,6 +465,15 @@ let thumbSelectCristina = ()=> {
       thanks.classList.add('deactive');
     };
   });
+
+  // Percent Bar
+  likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+  dislikesPercent = 100 - likesPercent;
+
+  percentBarUp.style.width = likesPercent + '%';
+  percentUp.innerHTML = Math.round(likesPercent);
+  percentBarDown.style.width = dislikesPercent + '%';
+  percentDown.innerHTML = Math.round(dislikesPercent);
 }
 
 let thumbSelectMalala = ()=> {
@@ -396,15 +482,17 @@ let thumbSelectMalala = ()=> {
       thumbDown = document.getElementById('thumb-down-malala'),
       thumbTitle = document.getElementById('title-thumb-malala'),
       thumbTitleIcon = document.getElementById('title-thumb-icon-malala'),
-      percentOne = document.getElementById('percentone-malala'),
-      p1 = percentOne.innerHTML,
-      percentTwo = document.getElementById('percenttwo-malala'),
-      p2 = percentTwo.innerHTML,
+      likes = document.getElementById('likes-malala').innerHTML,
+      dislikes = document.getElementById('dislikes-malala').innerHTML,
+      percentBarUp = document.getElementById('percent-bar-up-malala'),
+      percentBarDown = document.getElementById('percent-bar-down-malala'),
+      percentUp = document.getElementById('percent-up-malala'),
+      percentDown = document.getElementById('percent-down-malala'),
       thumbs = document.getElementById('thumbs-malala');
 
   // Title thumb
 
-  if(p1 > p2) {
+  if(likes >= dislikes) {
     thumbTitle.classList.remove('thumbs-box--down')
     thumbTitle.classList.add('thumbs-box--up')
     thumbTitleIcon.classList.add('fa-thumbs-up')
@@ -444,9 +532,14 @@ let thumbSelectMalala = ()=> {
       descriptionBox = document.getElementById('description-box-malala'),
       thanks = document.getElementById('thanks-malala'),
       voteAgain = document.getElementById('vote-again-malala'),
-      votedStorage = window.localStorage;
+      votesStorage = window.localStorage;
 
   voteNow.addEventListener('click', (e)=> {
+    e.preventDefault();
+    
+  let likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100,
+      dislikesPercent = (Number(dislikes))/(Number(likes) + Number(dislikes))*100;
+
     if(thumbUp.classList.contains('selected') || thumbDown.classList.contains('selected')) {
       thumbs.classList.add('deactive');
       voteNow.classList.add('deactive');
@@ -454,10 +547,23 @@ let thumbSelectMalala = ()=> {
       descriptionBox.classList.add('deactive');
       thanks.classList.remove('deactive');
     } if (thumbUp.classList.contains('selected')){
-      console.log('contiene up')
-      votedStorage.setItem('malala', 1)
+      likes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarUp.style.width = likesPercent + '%';
+      votesStorage.setItem('Malala like', likes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     } if (thumbDown.classList.contains('selected')){
-      console.log('contiene down')
+      dislikes++;
+      likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+      percentUp.innerHTML = Math.round(likesPercent);
+      percentBarDown.style.width = likesPercent + '%';
+      votesStorage.setItem('Malala dislike', dislikes++)
+      console.log(likesPercent);
+      dislikesPercent = 100 - likesPercent;
+      percentDown.innerHTML = Math.round(dislikesPercent);
     };
     
   });
@@ -474,7 +580,14 @@ let thumbSelectMalala = ()=> {
       thanks.classList.add('deactive');
     };
   });
+
+  // Percent Bar
+  likesPercent = (Number(likes))/(Number(likes) + Number(dislikes))*100;
+  dislikesPercent = 100 - likesPercent;
+
+  percentBarUp.style.width = likesPercent + '%';
+  percentUp.innerHTML = Math.round(likesPercent);
+  percentBarDown.style.width = dislikesPercent + '%';
+  percentDown.innerHTML = Math.round(dislikesPercent);
 }
-
-
 
