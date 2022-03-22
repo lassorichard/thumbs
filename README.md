@@ -1,6 +1,6 @@
-# Richard Lasso - Zemoga UI Test
+# Richard Lasso - Thumbs
 
-> Zemoga Test website
+> Developed by Richard Lasso Ledesma
 
 ## Repository
 
@@ -9,17 +9,17 @@
 
 Main Branch:
 ```bash
-git clone https://github.com/lassorichard/zemoga-test
+git clone https://github.com/lassorichard/thumbs
 ```
 
 layout Branch:
 ```bash
-git clone https://github.com/lassorichard/zemoga-test/tree/layout
+git clone https://github.com/lassorichard/thumbs/tree/layout
 ```
 
 layout Branch:
 ```bash
-git clone https://github.com/lassorichard/zemoga-test/tree/interaction
+git clone https://github.com/lassorichard/thumbs/tree/interaction
 ```
 
 
@@ -35,7 +35,7 @@ $ npm install --global gulp-cli
 Install dependencies/devDependencies and start a local server.
 
 ```bash
-$ cd zemoga-test
+$ cd thumbs
 $ npm i || npm install
 $ npm start || gulp
 ```
